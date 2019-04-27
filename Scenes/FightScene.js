@@ -1,21 +1,20 @@
-import { Character } from '../Characters/Character.js';
 import { Player } from '../Characters/Player.js';
-import { Ennemy1 } from '../Characters/Ennemy1.js';
+import { Enemy1 } from '../Characters/Enemy1.js';
 import { Fight } from '../Fight.js';
 
 export class FightScene extends Phaser.Scene{
 
-	constructor() {
+	constructor(player, enemy, fight) {
 
-		super({ key: 'FightScene', actve: true});
+		super({ key: 'FightScene'});
 
-		this.player = new Player();		
+		this.player = player;		
 		this.playerHealthTxt = null;
 
-		this.ennemy = new Ennemy1();		
-		this.ennemyHealthTxt = null;
+		this.enemy = enemy;		
+		this.enemyHealthTxt = null;
 
-		FightScene.fight = new Fight(this.player, this.ennemy);
+		FightScene.fight = fight;
 
 		FightScene.attackMenuText = null;
 
@@ -35,9 +34,9 @@ export class FightScene extends Phaser.Scene{
 
 	}
 
-	getEnnemy(){
+	getEnemy(){
 
-		return this.ennemy;
+		return this.enemy;
 
 	}
 
@@ -53,7 +52,7 @@ export class FightScene extends Phaser.Scene{
 				
 		this.playerHealthTxt = this.add.text(0, 0, 'Player Health:' + this.player.getHealth(), { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 
-		this.ennemyHealthTxt = this.add.text(400, 0, 'Ennemy Health:' + this.ennemy.getHealth(), { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		this.enemyHealthTxt = this.add.text(400, 0, 'Enemy Health:' + this.enemy.getHealth(), { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 
 		FightScene.attackMenuText = this.add.text(0, 550, 'Attack', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 		FightScene.attackMenuText.setInteractive(new Phaser.Geom.Rectangle(0, 0, FightScene.attackMenuText.width, FightScene.attackMenuText.height), Phaser.Geom.Rectangle.Contains);
@@ -96,11 +95,11 @@ export class FightScene extends Phaser.Scene{
 			FightScene.isPlayerTurn = false;
 			this.timerPlayerTurn = 0;
 
-			this.ennemyHealthTxt.text = 'Ennemy Health:' + this.ennemy.getHealth();
+			this.enemyHealthTxt.text = 'Enemy Health:' + this.enemy.getHealth();
 
 			if(this.ennemy.getHealth() > 0){
 
-				FightScene.fight.setEnnemyAction();
+				FightScene.fight.setEnemyAction();
 				this.isEnemyTurn = true;
 
 			}

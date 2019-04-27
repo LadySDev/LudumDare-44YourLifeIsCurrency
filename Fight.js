@@ -2,15 +2,15 @@ import { Character } from './Characters/Character.js';
 
 export class Fight{
 
-	constructor(player, ennemy) {
+	constructor(player, enemy) {
 			
 		this.actionsStr = [];
 
 		this.player = player;
 		this.playerAction = null;
 				
-		this.ennemy = ennemy;
-		this.ennemyAction = null;
+		this.enemy = enemy;
+		this.enemyAction = null;
 		
 	}
 
@@ -34,7 +34,7 @@ export class Fight{
 
 			this.actionsStr.push("You choosed the action: Attack.");
 
-			this.ennemy.takeDamage(this.player.getAttack());
+			this.enemy.takeDamage(this.player.getAttack());
 
 			this.actionsStr.push("The Enemy take " + this.player.getAttack() + " damages!");
 
@@ -46,7 +46,7 @@ export class Fight{
 
 		}
 		
-		if(this.ennemy.getHealth() === 0){
+		if(this.enemy.getHealth() === 0){
 
 			this.actionsStr.push("You Won!");
 
@@ -54,14 +54,14 @@ export class Fight{
 
 	}
 
-	setEnnemyAction(){
+	setEnemyAction(){
 
-		this.ennemyAction = "attack";
+		this.enemyAction = "attack";
 		this.executeEnnemyAction();
 
 	}
 
-	executeEnnemyAction(){
+	executeEnemyAction(){
 		
 		if(this.actionsStr.length > 0){
 
@@ -69,19 +69,19 @@ export class Fight{
 
 		}
 
-		if(this.ennemyAction === "attack"){
+		if(this.enemyAction === "attack"){
 
 			this.actionsStr.push("The Enemy choosed the action: Attack.");
 
-			this.player.takeDamage(this.ennemy.getAttack());
+			this.player.takeDamage(this.enemy.getAttack());
 
-			this.actionsStr.push("You take " + this.ennemy.getAttack() + " damages!");
+			this.actionsStr.push("You take " + this.enemy.getAttack() + " damages!");
 
 		}
 
-		if(this.ennemyAction !== null){
+		if(this.enemyAction !== null){
 
-			this.ennemyAction = null;
+			this.enemyAction = null;
 
 		}
 
