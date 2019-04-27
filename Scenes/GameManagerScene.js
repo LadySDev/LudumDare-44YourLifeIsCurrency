@@ -1,5 +1,6 @@
 import { MainScene } from './MainScene.js';
 import { Player } from '../Characters/Player.js';
+import { MapScene } from './MapScene.js';
 
 export class GameManagerScene extends Phaser.Scene{
 
@@ -13,6 +14,22 @@ export class GameManagerScene extends Phaser.Scene{
 
 	}
 
+	activeMainScene(parent){
+					
+		parent.scene.wake('MainScene');
+		
+		parent.scene.sleep('MapScene');
+
+	}
+
+	activeMapScene(parent){
+					
+		parent.scene.wake('MapScene');
+		
+		parent.scene.sleep('MainScene');
+
+	}
+
 	preload(){
 	
 
@@ -21,8 +38,12 @@ export class GameManagerScene extends Phaser.Scene{
 
 	create(){
 	
-		this.scene.add('MainScene', MainScene, true, { x: 0, y: 0 });
-	
+		this.mainScene = this.scene.add('MainScene', MainScene, true);
+		
+		this.currentScene = "MainScene";
+
+		this.mapScene = this.scene.add('MapScene', MapScene, true, { scene: GameManagerScene});
+		this.scene.sleep('MapScene');
 	}
 
 	update(){

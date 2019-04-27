@@ -6,6 +6,12 @@ export class MainScene extends Phaser.Scene{
 
 	}
 
+	init(data){
+			
+		MainScene.gameManagerScene = this.scene.get('GameManagerScene');
+		
+	}
+
 	preload(){
 	
 		//console.log("MainScene preload");
@@ -37,8 +43,8 @@ export class MainScene extends Phaser.Scene{
 		});
 
 		MainScene.mapMenuText.on('pointerdown', function(pointer){		
-			
-		});
+			MainScene.gameManagerScene.activeMapScene(this);
+		}, this);
 
 		MainScene.shopMenuText = this.add.text(320, 570, 'SHOP', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 		MainScene.shopMenuText.setInteractive(new Phaser.Geom.Rectangle(0, 0, MainScene.shopMenuText.width, MainScene.shopMenuText.height), Phaser.Geom.Rectangle.Contains);
