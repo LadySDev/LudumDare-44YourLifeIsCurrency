@@ -13,6 +13,12 @@ export class Character{
 
 	}
 
+	setHealth(number){
+	
+		Character.health = number;
+
+	}
+	
 	takeDamage(number){
 
 		Character.health = Character.health - number;
