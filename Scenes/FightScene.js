@@ -1,9 +1,13 @@
+import { Player } from '../Characters/Player.js';
+
 export class FightScene extends Phaser.Scene{
 
 	constructor() {
 
 		super({ key: 'FightScene', actve: true});
 
+		FightScene.player = new Player();
+		
 	}
 
 	preload(){
