@@ -1,4 +1,5 @@
 import { Player } from '../Characters/Player.js';
+import { Ennemy1 } from '../Characters/Ennemy1.js';
 
 export class FightScene extends Phaser.Scene{
 
@@ -7,7 +8,8 @@ export class FightScene extends Phaser.Scene{
 		super({ key: 'FightScene', actve: true});
 
 		FightScene.player = new Player();
-		
+		FightScene.ennemy = new Ennemy1();
+
 	}
 
 	preload(){
