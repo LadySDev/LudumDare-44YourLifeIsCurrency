@@ -4,8 +4,10 @@ export class Ennemy1 extends Character{
 
 	constructor() {
 	
-		super().setHealth(100);
-
+		super();
+		this.setHealth(50);
+		this.setAttack(25);
+		
 	}
 
 }

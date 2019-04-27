@@ -2,30 +2,27 @@ export class Character{
 
 	constructor() {
 
-		Character.health = null;
-		Character.attack = null;
-
 	}
 
 	getHealth(){
 
-		return Character.health;
+		return this.health;
 
 	}
 
 	setHealth(number){
 	
-		Character.health = number;
+		this.health = number;
 
 	}
 	
 	takeDamage(number){
 
-		Character.health = Character.health - number;
+		this.health = this.health - number;
 
-		if(Character.health < 0){
+		if(this.health < 0){
 
-			Character.health = 0;
+			this.health = 0;
 
 		}
 
@@ -33,7 +30,13 @@ export class Character{
 
 	getAttack(){
 
-		return Character.attack;
+		return this.attack;
+
+	}
+
+	setAttack(number){
+
+		this.attack = number;
 
 	}
 

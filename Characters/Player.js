@@ -4,8 +4,10 @@ export class Player extends Character{
 
 	constructor() {
 	
-		super().setHealth(100);
-
+		super();
+		this.setHealth(100);
+		this.setAttack(25);
+		
 	}
 
 }
