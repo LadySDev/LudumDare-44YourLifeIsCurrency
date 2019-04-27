@@ -1,3 +1,4 @@
+import {GameManagerScene} from './Scenes/GameManagerScene.js';
 import {FightScene} from './Scenes/FightScene.js';
 
 var config = {
@@ -7,7 +8,7 @@ var config = {
 	antialias: false,
 	pixelArt: true,
 	roundPixels: true,
-	scene: [FightScene]
+	scene: [GameManagerScene, FightScene]
 };
 
 var game = new Phaser.Game(config);
