@@ -7,4 +7,28 @@ export class Level{
 
 	}
 
+	setId(number){
+
+		this.id = number;
+
+	}
+
+	getId(){
+
+		return this.id;
+
+	}
+
+	setEnemy(enemy){
+
+		this.enemy = enemy;
+
+	}
+
+	getEnemy(){
+
+		return this.enemy;
+
+	}
+
 }
