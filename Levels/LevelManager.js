@@ -22,4 +22,15 @@ export class LevelManager{
 
 	}
 
+	getCurrentLevel(){
+
+		if(this.levels.length <= this.currentLevel){
+			return this.levels[this.currentLevel - 1];
+		}
+		else{
+			return null;
+		}
+
+	}
+
 }
