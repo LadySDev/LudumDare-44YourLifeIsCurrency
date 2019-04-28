@@ -40,9 +40,9 @@ export class FightScene extends Phaser.Scene{
 	
 		//console.log("create FightScene");
 				
-		this.playerHealthTxt = this.add.text(0, 0, 'Player Health:' + FightScene.gameManagerScene.player.getHealth(), { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		this.playerHealthTxt = this.add.text(0, 0, 'Player Health:', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 
-		this.enemyHealthTxt = this.add.text(400, 0, 'Enemy Health:' + FightScene.gameManagerScene.enemy.getHealth(), { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		this.enemyHealthTxt = this.add.text(400, 0, 'Enemy Health:', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 
 		FightScene.attackMenuText = this.add.text(0, 550, 'Attack', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 		FightScene.attackMenuText.setInteractive(new Phaser.Geom.Rectangle(0, 0, FightScene.attackMenuText.width, FightScene.attackMenuText.height), Phaser.Geom.Rectangle.Contains);
@@ -59,6 +59,13 @@ export class FightScene extends Phaser.Scene{
 			FightScene.gameManagerScene.fight.setPlayerAction("attack");	
 			FightScene.isPlayerTurn = true;
 		});
+
+	}
+
+	initHealth(){
+
+		this.playerHealthTxt.text = 'Player Health:' + FightScene.gameManagerScene.player.getHealth();
+		this.enemyHealthTxt.text = 'Enemy Health:' + FightScene.gameManagerScene.enemy.getHealth();
 
 	}
 
@@ -87,7 +94,7 @@ export class FightScene extends Phaser.Scene{
 
 			this.enemyHealthTxt.text = 'Enemy Health:' + FightScene.gameManagerScene.enemy.getHealth();
 
-			if(FightScene.gameManagerScene.ennemy.getHealth() > 0){
+			if(FightScene.gameManagerScene.enemy.getHealth() > 0){
 
 				FightScene.gameManagerScene.fight.setEnemyAction();
 				this.isEnemyTurn = true;

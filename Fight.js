@@ -57,7 +57,7 @@ export class Fight{
 	setEnemyAction(){
 
 		this.enemyAction = "attack";
-		this.executeEnnemyAction();
+		this.executeEnemyAction();
 
 	}
 
