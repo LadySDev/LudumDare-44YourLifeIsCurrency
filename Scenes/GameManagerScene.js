@@ -1,5 +1,6 @@
 import { MainScene } from './MainScene.js';
 import { Player } from '../Characters/Player.js';
+import { LevelManager } from '../Levels/LevelManager.js';
 import { MapScene } from './MapScene.js';
 import { FightScene } from './FightScene.js';
 
@@ -9,7 +10,8 @@ export class GameManagerScene extends Phaser.Scene{
 
 		super({ key: 'GameManagerScene', actve: true});
 		
-		this.player = new Player();		
+		this.player = new Player();	
+		this.levelManager = new LevelManager();
 			
 	}
 
@@ -31,7 +33,8 @@ export class GameManagerScene extends Phaser.Scene{
 
 	activeFightScene(parent){
 
-		this.enemy = null;/////////////////////////////
+		this.currentLevel = this.levelManager.getCurrentLevel();
+		this.enemy = this.currentLevel.getEnemy();
 		this.fight = new Fight(this.player, this.enemy);
 
 		parent.scene.wake('FightScene');
