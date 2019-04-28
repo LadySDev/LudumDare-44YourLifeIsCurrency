@@ -2,6 +2,9 @@ export class Character{
 
 	constructor() {
 
+		this.health = null;
+		this.attack = null;
+
 	}
 
 	getHealth(){
