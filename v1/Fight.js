@@ -23,7 +23,7 @@ export class Fight{
 	}
 		
 	executePlayerAction(){
-		
+
 		if(this.actionsStr.length > 0){
 
 			this.actionsStr = [];
@@ -55,7 +55,7 @@ export class Fight{
 	}
 
 	setEnemyAction(){
-		
+
 		this.enemyAction = "attack";
 		this.executeEnemyAction();
 

@@ -4,30 +4,27 @@ import { Fight } from '../Fight.js';
 
 export class FightScene extends Phaser.Scene{
 
-	constructor(player, enemy, fight) {
+	constructor() {
 
 		super({ key: 'FightScene'});
-				
-		this.playerHealthTxt = null;
-					
-		this.enemyHealthTxt = null;
-
-		FightScene.attackMenuText = null;
-
+								
 		this.changeTurnCoolDown = 2000; //ms
-
-		FightScene.isPlayerTurn = null;
+				
+		this.isPlayerTurn = false;
 		this.timerPlayerTurn = null;
-
-		this.isEnemyTurn = null;
+		this.isEnemyTurn = false;
 		this.timerEnemyTurn = null;
-
 	}
 
 	init(data){
 	
-		FightScene.gameManagerScene = this.scene.get('GameManagerScene');
+		this.gameManagerScene = this.scene.get('GameManagerScene');
 	
+		this.player = this.gameManagerScene.player;
+		this.enemy = this.gameManagerScene.levelManager.getCurrentLevel().getEnemy();
+
+		this.fight = new Fight(this.player, this.enemy);
+
 	}
 
 	preload(){
@@ -40,32 +37,28 @@ export class FightScene extends Phaser.Scene{
 	
 		//console.log("create FightScene");
 				
-		this.playerHealthTxt = this.add.text(0, 0, 'Player Health:', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		//	PLAYER HEALTH
+		this.playerHealthTxt = this.add.text(0, 0, 'Player Health:' + this.player.getHealth(), { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 
-		this.enemyHealthTxt = this.add.text(400, 0, 'Enemy Health:', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		//	ENEMY HEALTH
+		this.enemyHealthTxt = this.add.text(400, 0, 'Enemy Health:' + this.enemy.getHealth(), { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 
-		FightScene.attackMenuText = this.add.text(0, 550, 'Attack', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
-		FightScene.attackMenuText.setInteractive(new Phaser.Geom.Rectangle(0, 0, FightScene.attackMenuText.width, FightScene.attackMenuText.height), Phaser.Geom.Rectangle.Contains);
+		//	ACTION MENU
+		this.btnAttackTxt = this.add.text(0, 550, 'Attack', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		this.btnAttackTxt.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.btnAttackTxt.width, this.btnAttackTxt.height), Phaser.Geom.Rectangle.Contains);
 
-		FightScene.attackMenuText.on('pointerover', function(pointer){
-			FightScene.attackMenuText.setAlpha(0.5);			
-		});
+		this.btnAttackTxt.on('pointerover', function(pointer){
+			this.btnAttackTxt.setAlpha(0.5);			
+		}, this);
 		
-		FightScene.attackMenuText.on('pointerout', function(pointer){
-			FightScene.attackMenuText.setAlpha(1.0);
-		});
+		this.btnAttackTxt.on('pointerout', function(pointer){
+			this.btnAttackTxt.setAlpha(1.0);
+		}, this);
 
-		FightScene.attackMenuText.on('pointerdown', function(pointer){		
-			FightScene.gameManagerScene.fight.setPlayerAction("attack");	
-			FightScene.isPlayerTurn = true;
-		});
-
-	}
-
-	initHealth(){
-
-		this.playerHealthTxt.text = 'Player Health:' + FightScene.gameManagerScene.player.getHealth();
-		this.enemyHealthTxt.text = 'Enemy Health:' + FightScene.gameManagerScene.enemy.getHealth();
+		this.btnAttackTxt.on('pointerdown', function(pointer){		
+			this.fight.setPlayerAction("attack");	
+			this.isPlayerTurn = true;
+		}, this);
 
 	}
 
@@ -73,9 +66,11 @@ export class FightScene extends Phaser.Scene{
 	
 		//console.log("upload FightScene");
 		
-		if(FightScene.isPlayerTurn === true){
+
+		//	PLAYER TURN
+		if(this.isPlayerTurn === true){
 			
-			FightScene.attackMenuText.setVisible(false);
+			this.btnAttackTxt.setVisible(false);
 
 			if(this.timerPlayerTurn === null){
 			
@@ -89,20 +84,21 @@ export class FightScene extends Phaser.Scene{
 
 		if(this.timerPlayerTurn !== null && this.timerPlayerTurn >= this.changeTurnCoolDown){
 
-			FightScene.isPlayerTurn = false;
+			this.isPlayerTurn = false;
 			this.timerPlayerTurn = 0;
+			
+			this.enemyHealthTxt.text = 'Enemy Health:' + this.enemy.getHealth();
 
-			this.enemyHealthTxt.text = 'Enemy Health:' + FightScene.gameManagerScene.enemy.getHealth();
+			if(this.enemy.getHealth() > 0){
 
-			if(FightScene.gameManagerScene.enemy.getHealth() > 0){
-
-				FightScene.gameManagerScene.fight.setEnemyAction();
+				this.fight.setEnemyAction();
 				this.isEnemyTurn = true;
 
 			}
 
 		}
 
+		//	ENEMY TURN
 		if(this.isEnemyTurn === true){
 
 			if(this.timerEnemyTurn === null){
@@ -120,11 +116,11 @@ export class FightScene extends Phaser.Scene{
 			this.isEnemyTurn = false;
 			this.timerEnemyTurn = 0;
 
-			this.playerHealthTxt.text = 'Player Health:' + FightScene.gameManagerScene.player.getHealth();
+			this.playerHealthTxt.text = 'Player Health:' + this.player.getHealth();
 
-			if(FightScene.gameManagerScene.player.getHealth() > 0){
+			if(this.player.getHealth() > 0){
 
-				FightScene.attackMenuText.setVisible(true);
+				this.btnAttackTxt.setVisible(true);
 
 			}
 

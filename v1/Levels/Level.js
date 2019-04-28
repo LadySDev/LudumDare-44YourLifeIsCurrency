@@ -4,7 +4,6 @@ export class Level{
 
 		this.id = null;
 		this.enemy = null;
-		this.alreadyDone = false;
 
 	}
 
@@ -29,18 +28,6 @@ export class Level{
 	getEnemy(){
 
 		return this.enemy;
-
-	}
-
-	setAlreadyDone(bool){
-
-		this.alreadyDone = bool;
-
-	}
-
-	getAlreadyDone(){
-	
-		return this.alreadyDone;
 
 	}
 

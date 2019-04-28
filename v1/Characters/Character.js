@@ -18,19 +18,7 @@ export class Character{
 		this.health = number;
 
 	}
-		
-	getAttack(){
-
-		return this.attack;
-
-	}
-
-	setAttack(number){
-
-		this.attack = number;
-
-	}
-
+	
 	takeDamage(number){
 
 		this.health = this.health - number;
@@ -40,6 +28,18 @@ export class Character{
 			this.health = 0;
 
 		}
+
+	}
+
+	getAttack(){
+
+		return this.attack;
+
+	}
+
+	setAttack(number){
+
+		this.attack = number;
 
 	}
 

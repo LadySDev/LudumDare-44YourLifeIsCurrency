@@ -8,10 +8,10 @@ export class MainScene extends Phaser.Scene{
 
 	init(data){
 			
-		MainScene.gameManagerScene = this.scene.get('GameManagerScene');
+		this.gameManagerScene = this.scene.get('GameManagerScene');
 		
 	}
-
+	
 	preload(){
 	
 		//console.log("MainScene preload");
@@ -22,32 +22,37 @@ export class MainScene extends Phaser.Scene{
 	
 		//console.log("MainScene create");
 
-		MainScene.profileMenuText = this.add.text(10, 570, 'PROFILE', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
-		MainScene.profileMenuText.setInteractive(new Phaser.Geom.Rectangle(0, 0, MainScene.profileMenuText.width, MainScene.profileMenuText.height), Phaser.Geom.Rectangle.Contains);
+		//	PROFILE
+		this.btnProfileTxt = this.add.text(10, 570, 'PROFILE', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		this.btnProfileTxt.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.btnProfileTxt.width, this.btnProfileTxt.height), Phaser.Geom.Rectangle.Contains);
 	
-		MainScene.skillsMenuText = this.add.text(110, 570, 'SKILLS', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
-		MainScene.skillsMenuText.setInteractive(new Phaser.Geom.Rectangle(0, 0, MainScene.skillsMenuText.width, MainScene.skillsMenuText.height), Phaser.Geom.Rectangle.Contains);
+		// BAG
+		this.btnBagTxt = this.add.text(110, 570, 'BAG', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		this.btnBagTxt.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.btnBagTxt.width, this.btnBagTxt.height), Phaser.Geom.Rectangle.Contains);
 
-		MainScene.bagMenuText = this.add.text(200, 570, 'BAG', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
-		MainScene.bagMenuText.setInteractive(new Phaser.Geom.Rectangle(0, 0, MainScene.bagMenuText.width, MainScene.bagMenuText.height), Phaser.Geom.Rectangle.Contains);
-
-		MainScene.mapMenuText = this.add.text(260, 570, 'MAP', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
-		MainScene.mapMenuText.setInteractive(new Phaser.Geom.Rectangle(0, 0, MainScene.mapMenuText.width, MainScene.mapMenuText.height), Phaser.Geom.Rectangle.Contains);
-
-		MainScene.mapMenuText.on('pointerover', function(pointer){
-			MainScene.mapMenuText.setAlpha(0.5);			
-		});
+		//	SKILLS
+		this.btnSkillsTxt = this.add.text(170, 570, 'SKILLS', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		this.btnSkillsTxt.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.btnSkillsTxt.width, this.btnSkillsTxt.height), Phaser.Geom.Rectangle.Contains);
 		
-		MainScene.mapMenuText.on('pointerout', function(pointer){
-			MainScene.mapMenuText.setAlpha(1.0);
-		});
+		//	MAP
+		this.btnMapTxt = this.add.text(260, 570, 'MAP', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		this.btnMapTxt.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.btnMapTxt.width, this.btnMapTxt.height), Phaser.Geom.Rectangle.Contains);
 
-		MainScene.mapMenuText.on('pointerdown', function(pointer){		
-			MainScene.gameManagerScene.activeMapScene(this);
+		this.btnMapTxt.on('pointerover', function(pointer){
+			this.btnMapTxt.setAlpha(0.5);			
+		}, this);
+		
+		this.btnMapTxt.on('pointerout', function(pointer){
+			this.btnMapTxt.setAlpha(1.0);
 		}, this);
 
-		MainScene.shopMenuText = this.add.text(320, 570, 'SHOP', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
-		MainScene.shopMenuText.setInteractive(new Phaser.Geom.Rectangle(0, 0, MainScene.shopMenuText.width, MainScene.shopMenuText.height), Phaser.Geom.Rectangle.Contains);
+		this.btnMapTxt.on('pointerdown', function(pointer){		
+			this.gameManagerScene.showMapScene(this);
+		}, this);
+
+		//	SHOP
+		this.btnShopTxt = this.add.text(320, 570, 'SHOP', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		this.btnShopTxt.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.btnShopTxt.width, this.btnShopTxt.height), Phaser.Geom.Rectangle.Contains);
 
 	}
 

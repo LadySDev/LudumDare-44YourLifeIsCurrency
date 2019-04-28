@@ -3,7 +3,6 @@ import { Player } from '../Characters/Player.js';
 import { LevelManager } from '../Levels/LevelManager.js';
 import { MapScene } from './MapScene.js';
 import { FightScene } from './FightScene.js';
-import { Fight } from '../Fight.js';
 
 export class GameManagerScene extends Phaser.Scene{
 
@@ -13,37 +12,47 @@ export class GameManagerScene extends Phaser.Scene{
 		
 		this.player = new Player();	
 		this.levelManager = new LevelManager();
-		this.enemy = null;
-			
+
 	}
 
-	activeMainScene(parent){
+	showMainScene(parent){
 					
-		parent.scene.wake('MainScene');
-		
-		parent.scene.sleep('MapScene');
+		//parent.scene.wake('MainScene');		
+		//parent.scene.sleep('MapScene');
 
 	}
 
-	activeMapScene(parent){
-					
-		parent.scene.wake('MapScene');
-		
-		parent.scene.sleep('MainScene');
+	showProfileScene(parent){}
+	showBagScene(parent){}
+	showSkillsScene(parent){}
 
-	}
-
-	activeFightScene(parent){
-
-		this.currentLevel = this.levelManager.getCurrentLevel();
-		this.enemy = this.currentLevel.getEnemy();
-		
-		this.fight = new Fight(this.player, this.enemy);
+	showMapScene(parent){
+							
+		parent.scene.add('MapScene', MapScene, true);
 				
-		this.scene.get('FightScene').initHealth();
-		parent.scene.wake('FightScene');
+		parent.scene.remove('MainScene');
+
+	}
+
+	showShopScene(parent){}
+
+	showFightScene(parent){
 		
-		parent.scene.sleep('MapScene');
+		parent.scene.add('FightScene', FightScene, true);
+				
+		parent.scene.remove('MapScene');
+
+	}
+
+	showWinScene(parent){
+
+		parent.scene.sleep('FightScene');
+
+	}
+
+	showLoseScene(parent){
+
+		parent.scene.sleep('FightScene');
 
 	}
 
@@ -57,12 +66,6 @@ export class GameManagerScene extends Phaser.Scene{
 	
 		this.scene.add('MainScene', MainScene, true);
 		
-		this.scene.add('MapScene', MapScene, true);
-		this.scene.sleep('MapScene');
-
-		this.scene.add('FightScene', FightScene, true);
-		this.scene.sleep('FightScene');
-
 	}
 
 	update(){
