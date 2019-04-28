@@ -1,6 +1,7 @@
 import { MainScene } from './MainScene.js';
 import { Player } from '../Characters/Player.js';
 import { MapScene } from './MapScene.js';
+import { FightScene } from './FightScene.js';
 
 export class GameManagerScene extends Phaser.Scene{
 
@@ -9,9 +10,7 @@ export class GameManagerScene extends Phaser.Scene{
 		super({ key: 'GameManagerScene', actve: true});
 		
 		this.player = new Player();		
-				
-		//this.fightScene = new FightScene();
-
+			
 	}
 
 	activeMainScene(parent){
@@ -30,6 +29,17 @@ export class GameManagerScene extends Phaser.Scene{
 
 	}
 
+	activeFightScene(parent){
+
+		this.enemy = null;/////////////////////////////
+		this.fight = new Fight(this.player, this.enemy);
+
+		parent.scene.wake('FightScene');
+
+		parent.scene.sleep('MapScene');
+
+	}
+
 	preload(){
 	
 
@@ -40,10 +50,12 @@ export class GameManagerScene extends Phaser.Scene{
 	
 		this.mainScene = this.scene.add('MainScene', MainScene, true);
 		
-		this.currentScene = "MainScene";
-
 		this.mapScene = this.scene.add('MapScene', MapScene, true, { scene: GameManagerScene});
 		this.scene.sleep('MapScene');
+
+		this.mapScene = this.scene.add('FightScene', FightScene, true, { scene: GameManagerScene});
+		this.scene.sleep('FightScene');
+
 	}
 
 	update(){
