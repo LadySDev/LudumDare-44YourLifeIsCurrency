@@ -4,9 +4,17 @@ export class LoseScene extends Phaser.Scene{
 
 		super({ key: 'LoseScene'});
 		
+		this.coolDown = 2000; //ms
+
+		this.timerBackToMain = 0;
+
 	}
 	
-	init(data){}
+	init(data){
+
+		this.gameManagerScene = this.scene.get('GameManagerScene');
+
+	}
 
 	preload(){}
 
@@ -19,6 +27,19 @@ export class LoseScene extends Phaser.Scene{
 
 	}
 
-	update(){}
+	update(time, delta){
+
+		this.timerBackToMain = this.timerBackToMain + delta;
+
+		if(this.timerBackToMain >= this.coolDown){
+			
+			var fightScene = this.scene.get('FightScene');					
+			this.gameManagerScene.player.setHealth(fightScene.fight.playerHealthBeforeFight);
+			
+			this.gameManagerScene.showMainScene(this);
+
+		}
+
+	}
 
 }

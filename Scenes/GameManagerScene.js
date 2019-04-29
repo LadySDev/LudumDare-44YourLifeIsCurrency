@@ -29,8 +29,9 @@ export class GameManagerScene extends Phaser.Scene{
 	showSkillsScene(parent){}
 
 	showMapScene(parent){
-									
+						
 		parent.scene.start('MapScene');
+				
 		parent.scene.sleep('MainScene');
 
 	}

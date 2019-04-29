@@ -1,5 +1,5 @@
 import { Level } from '../Levels/Level.js';
-import { Enemy1 } from '../Characters/Enemy1.js';
+import { Enemy2 } from '../Characters/Enemy2.js';
 
 export class Level2 extends Level{
 
@@ -8,7 +8,7 @@ export class Level2 extends Level{
 		super();
 
 		this.setId(2);
-		this.setEnemy(new Enemy1());
+		this.setEnemy(new Enemy2());
 
 	}
 

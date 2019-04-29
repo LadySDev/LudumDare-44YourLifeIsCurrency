@@ -9,6 +9,8 @@ export class Fight{
 		this.player = player;
 		this.playerAction = null;
 				
+		this.playerHealthBeforeFight = this.player.getHealth();
+
 		this.enemy = enemy;
 		this.enemyAction = null;
 		
