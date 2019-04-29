@@ -8,6 +8,7 @@ export class Helmet1 extends Equipment{
 
 		this.setName("Helmet1");
 		this.setDefenseBonus(5);
+		this.setLocation("head");
 		
 	}
 

@@ -6,6 +6,7 @@ import { MapScene } from './MapScene.js';
 import { FightScene } from './FightScene.js';
 import { WinScene } from './WinScene.js';
 import { LoseScene } from './LoseScene.js';
+import { ProfileScene } from './ProfileScene.js';
 
 export class GameManagerScene extends Phaser.Scene{
 
@@ -20,13 +21,23 @@ export class GameManagerScene extends Phaser.Scene{
 
 	showMainScene(parent){
 					
+		if(this.scene.isActive('LoseScene')){
+
+			parent.scene.sleep('LoseScene');
+
+		}
+
 		parent.scene.start('MainScene');
 		parent.scene.sleep('MapScene');
 
 	}
 
-	showProfileScene(parent){}
-	showBagScene(parent){}
+	showProfileScene(parent){
+
+		parent.scene.start('ProfileScene');
+
+	}
+	
 	showSkillsScene(parent){}
 
 	showMapScene(parent){
@@ -82,6 +93,7 @@ export class GameManagerScene extends Phaser.Scene{
 		this.scene.add('FightScene', FightScene, false);
 		this.scene.add('WinScene', WinScene, false);
 		this.scene.add('LoseScene', LoseScene, false);
+		this.scene.add('ProfileScene', ProfileScene, false);
 
 	}
 

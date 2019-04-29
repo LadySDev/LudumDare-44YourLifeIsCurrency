@@ -8,7 +8,7 @@ export class Enemy1 extends Character{
 		super();
 		this.setHealth(50);
 		this.setAttack(25);
-		
+		this.setDefense(0);
 		this.loot = new LifePotion1();
 
 	}

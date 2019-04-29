@@ -6,6 +6,8 @@ export class Item extends Object{
 
 		super();
 
+		this.setCanUseIt(true);
+
 		this.healthBonus = null;
 		
 	}

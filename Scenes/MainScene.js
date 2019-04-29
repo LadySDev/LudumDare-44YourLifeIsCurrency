@@ -25,11 +25,19 @@ export class MainScene extends Phaser.Scene{
 		//	PROFILE
 		this.btnProfileTxt = this.add.text(10, 570, 'PROFILE', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 		this.btnProfileTxt.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.btnProfileTxt.width, this.btnProfileTxt.height), Phaser.Geom.Rectangle.Contains);
-	
-		// BAG
-		this.btnBagTxt = this.add.text(110, 570, 'BAG', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
-		this.btnBagTxt.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.btnBagTxt.width, this.btnBagTxt.height), Phaser.Geom.Rectangle.Contains);
+			
+		this.btnProfileTxt.on('pointerover', function(pointer){
+			this.btnProfileTxt.setAlpha(0.5);			
+		}, this);
+		
+		this.btnProfileTxt.on('pointerout', function(pointer){
+			this.btnProfileTxt.setAlpha(1.0);
+		}, this);
 
+		this.btnProfileTxt.on('pointerdown', function(pointer){		
+			this.gameManagerScene.showProfileScene(this);
+		}, this);
+		
 		//	SKILLS
 		this.btnSkillsTxt = this.add.text(170, 570, 'SKILLS', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 		this.btnSkillsTxt.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.btnSkillsTxt.width, this.btnSkillsTxt.height), Phaser.Geom.Rectangle.Contains);

@@ -6,6 +6,8 @@ export class Weapon extends Object{
 
 		super();
 
+		this.canArmIt = true;
+
 		this.attackBonus = null;
 		
 	}

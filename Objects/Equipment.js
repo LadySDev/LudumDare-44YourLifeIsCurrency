@@ -6,8 +6,11 @@ export class Equipment extends Object{
 
 		super();
 
+		this.canEquipIt = true;
+
 		this.defenseBonus = null;
-		
+		this.location = null;
+
 	}
 
 	setDefenseBonus(bonus){
@@ -19,6 +22,18 @@ export class Equipment extends Object{
 	getDefenseBonus(){
 
 		return this.defenseBonus;
+
+	}
+
+	setLocation(location){
+
+		this.location = location;
+
+	}
+
+	getLocation(){
+
+		return this.location;
 
 	}
 

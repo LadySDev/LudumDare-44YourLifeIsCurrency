@@ -2,14 +2,32 @@ export class Bag{
 
 	constructor() {
 
-		this.objectList = new Array(10);
+		this.objectList = new Array(30);
 		
 	}
 
+	getObjectList(){
+
+		return this.objectList;
+
+	}
+
 	addObject(object){
+				
+		var index = null;
 
-		this.objectList.push(object);
+		for(var i = this.objectList.length - 1; i > -1; i--){
+			if(this.objectList[i] === undefined){				
+				index = i;
+			}
+		}
 
+		if(index !== null){
+
+			this.objectList[index] = object;
+
+		}
+		
 	}
 
 	moveObject(object, position){
@@ -26,7 +44,13 @@ export class Bag{
 
 		var position = this.objectList.indexOf(object);
 
-		this.objectList[position] = null;
+		this.objectList[position] = undefined;
+
+	}
+
+	putObjectAt(object, position){
+
+		this.objectList[position] = object;
 
 	}
 

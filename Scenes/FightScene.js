@@ -43,10 +43,10 @@ export class FightScene extends Phaser.Scene{
 		//console.log("create FightScene");
 				
 		//	PLAYER HEALTH
-		this.playerHealthTxt = this.add.text(0, 0, 'Player Health:' + this.player.getHealth(), { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		this.playerHealthTxt = this.add.text(0, 0, 'Player Health: ' + this.player.getHealth(), { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 
 		//	ENEMY HEALTH
-		this.enemyHealthTxt = this.add.text(400, 0, 'Enemy Health:' + this.enemy.getHealth(), { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
+		this.enemyHealthTxt = this.add.text(400, 0, 'Enemy Health: ' + this.enemy.getHealth(), { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 
 		//	ACTION MENU
 		this.btnAttackTxt = this.add.text(0, 550, 'Attack', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
@@ -86,7 +86,7 @@ export class FightScene extends Phaser.Scene{
 			this.isPlayerTurn = false;
 			this.timerPlayerTurn = 0;
 			
-			this.enemyHealthTxt.text = 'Enemy Health:' + this.enemy.getHealth();
+			this.enemyHealthTxt.text = 'Enemy Health: ' + this.enemy.getHealth();
 
 			if(this.enemy.getHealth() > 0){
 
@@ -114,7 +114,7 @@ export class FightScene extends Phaser.Scene{
 			this.isEnemyTurn = false;
 			this.timerEnemyTurn = 0;
 
-			this.playerHealthTxt.text = 'Player Health:' + this.player.getHealth();
+			this.playerHealthTxt.text = 'Player Health: ' + this.player.getHealth();
 
 			if(this.player.getHealth() > 0){
 

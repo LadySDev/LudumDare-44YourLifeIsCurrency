@@ -7,7 +7,7 @@ export class Enemy2 extends Character{
 		super();
 		this.setHealth(75);
 		this.setAttack(75);
-		
+		this.setDefense(0);
 		this.loot = null;
 
 	}
