@@ -11,9 +11,11 @@ export class FightScene extends Phaser.Scene{
 		this.changeTurnCoolDown = 2000; //ms
 				
 		this.isPlayerTurn = false;
-		this.timerPlayerTurn = null;
+		this.timerPlayerTurn = 0;
 		this.isEnemyTurn = false;
-		this.timerEnemyTurn = null;
+		this.timerEnemyTurn = 0;
+		this.isFightOver = false;
+		this.timerFightOver = 0;
 	}
 
 	init(data){
@@ -71,13 +73,7 @@ export class FightScene extends Phaser.Scene{
 		if(this.isPlayerTurn === true){
 			
 			this.btnAttackTxt.setVisible(false);
-
-			if(this.timerPlayerTurn === null){
-			
-				this.timerPlayerTurn = 0;
-			
-			}
-
+						
 			this.timerPlayerTurn = this.timerPlayerTurn + delta;
 
 		}
@@ -95,17 +91,16 @@ export class FightScene extends Phaser.Scene{
 				this.isEnemyTurn = true;
 
 			}
+			else{
 
+				this.isFightOver = true;
+
+			}
+						
 		}
-
+		
 		//	ENEMY TURN
 		if(this.isEnemyTurn === true){
-
-			if(this.timerEnemyTurn === null){
-			
-				this.timerEnemyTurn = 0;
-			
-			}
 
 			this.timerEnemyTurn = this.timerEnemyTurn + delta;
 				
@@ -121,6 +116,37 @@ export class FightScene extends Phaser.Scene{
 			if(this.player.getHealth() > 0){
 
 				this.btnAttackTxt.setVisible(true);
+
+			}
+			else{
+
+				this.isFightOver = true;
+
+			}
+
+		}
+
+		//	WIN / LOSE
+		if(this.isFightOver === true){
+
+			this.timerFightOver = this.timerFightOver + delta;
+
+		}
+
+		if(this.timerFightOver !== null && this.timerFightOver >= this.changeTurnCoolDown){
+
+			this.isFightOver = false;
+			this.timerFightOver = 0;
+
+			if(this.player.getHealth() === 0){
+
+				this.gameManagerScene.showLoseScene(this);
+
+			}
+			else{
+
+				this.gameManagerScene.levelManager.getCurrentLevel().setAlreadyDone(true);
+				this.gameManagerScene.showWinScene(this);
 
 			}
 

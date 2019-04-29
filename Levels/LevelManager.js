@@ -1,4 +1,5 @@
 import { Level1 } from '../Levels/Level1.js';
+import { Level2 } from '../Levels/Level2.js';
 
 export class LevelManager{
 
@@ -11,8 +12,8 @@ export class LevelManager{
 	}
 
 	getCurrentLevel(){
-
-		if(this.levels.length <= this.currentLevel){
+		
+		if(this.levels.length >= this.currentLevel){
 
 			return this.levels[this.currentLevel - 1];
 
@@ -27,13 +28,18 @@ export class LevelManager{
 
 	upgradeCurrentLevel(){
 
-		this.currentLevel = this.currentLevel + 1;
+		if(this.levels.length > this.currentLevel){
+
+			this.currentLevel = this.currentLevel + 1;
+			
+		}
 
 	}
 
 	instantiateLevels(){
 
 		this.levels.push(new Level1());
+		this.levels.push(new Level2());
 
 	}
 

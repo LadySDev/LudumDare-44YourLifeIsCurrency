@@ -3,6 +3,8 @@ import { Player } from '../Characters/Player.js';
 import { LevelManager } from '../Levels/LevelManager.js';
 import { MapScene } from './MapScene.js';
 import { FightScene } from './FightScene.js';
+import { WinScene } from './WinScene.js';
+import { LoseScene } from './LoseScene.js';
 
 export class GameManagerScene extends Phaser.Scene{
 
@@ -17,8 +19,8 @@ export class GameManagerScene extends Phaser.Scene{
 
 	showMainScene(parent){
 					
-		//parent.scene.wake('MainScene');		
-		//parent.scene.sleep('MapScene');
+		parent.scene.start('MainScene');
+		parent.scene.sleep('MapScene');
 
 	}
 
@@ -27,10 +29,18 @@ export class GameManagerScene extends Phaser.Scene{
 	showSkillsScene(parent){}
 
 	showMapScene(parent){
-							
-		parent.scene.add('MapScene', MapScene, true);
-				
-		parent.scene.remove('MainScene');
+									
+		parent.scene.start('MapScene');
+		parent.scene.sleep('MainScene');
+
+	}
+
+	showMapSceneUpgrade(parent){
+			
+		parent.scene.start('MapScene', {bool: true});
+		
+		parent.scene.sleep('FightScene');
+		parent.scene.sleep('WinScene');
 
 	}
 
@@ -38,20 +48,21 @@ export class GameManagerScene extends Phaser.Scene{
 
 	showFightScene(parent){
 		
-		parent.scene.add('FightScene', FightScene, true);
-				
-		parent.scene.remove('MapScene');
+		parent.scene.start('FightScene');						
+		parent.scene.sleep('MapScene');
 
 	}
 
 	showWinScene(parent){
 
+		parent.scene.start('WinScene');
 		parent.scene.sleep('FightScene');
 
 	}
 
 	showLoseScene(parent){
 
+		parent.scene.start('LoseScene');
 		parent.scene.sleep('FightScene');
 
 	}
@@ -65,7 +76,11 @@ export class GameManagerScene extends Phaser.Scene{
 	create(){
 	
 		this.scene.add('MainScene', MainScene, true);
-		
+		this.scene.add('MapScene', MapScene, false);
+		this.scene.add('FightScene', FightScene, false);
+		this.scene.add('WinScene', WinScene, false);
+		this.scene.add('LoseScene', LoseScene, false);
+
 	}
 
 	update(){
