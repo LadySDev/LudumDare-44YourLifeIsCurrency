@@ -1,6 +1,5 @@
 import { Player } from '../Characters/Player.js';
 import { LevelManager } from '../Levels/LevelManager.js';
-import { Bag } from '../Objects/Bag.js';
 
 import { MainScene } from './MainScene.js';
 import { MapScene } from './MapScene.js';
@@ -16,8 +15,7 @@ export class GameManagerScene extends Phaser.Scene{
 		
 		this.player = new Player();	
 		this.levelManager = new LevelManager();
-		this.bag = new Bag();
-
+		
 	}
 
 	showMainScene(parent){

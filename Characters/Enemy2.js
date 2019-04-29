@@ -8,6 +8,20 @@ export class Enemy2 extends Character{
 		this.setHealth(75);
 		this.setAttack(75);
 		
+		this.loot = null;
+
+	}
+
+	setLoot(objects){
+
+		this.loot = objects;
+
+	}
+
+	getLoot(){
+
+		return this.loot;
+
 	}
 
 }

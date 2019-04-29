@@ -12,10 +12,13 @@ export class FightScene extends Phaser.Scene{
 				
 		this.isPlayerTurn = false;
 		this.timerPlayerTurn = 0;
+
 		this.isEnemyTurn = false;
 		this.timerEnemyTurn = 0;
+
 		this.isFightOver = false;
 		this.timerFightOver = 0;
+		
 	}
 
 	init(data){
@@ -92,13 +95,13 @@ export class FightScene extends Phaser.Scene{
 
 			}
 			else{
-
-				this.isFightOver = true;
+							
+					this.isFightOver = true;
 
 			}
 						
 		}
-		
+				
 		//	ENEMY TURN
 		if(this.isEnemyTurn === true){
 

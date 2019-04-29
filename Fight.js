@@ -50,7 +50,13 @@ export class Fight{
 		
 		if(this.enemy.getHealth() === 0){
 
-			this.actionsStr.push("You Won!");
+			//this.actionsStr.push("You Won!");
+
+			if(this.enemy.getLoot() !== null){
+
+				this.player.getBag().addObject(this.enemy.getLoot());
+				
+			}
 
 		}
 
@@ -89,7 +95,7 @@ export class Fight{
 
 		if(this.player.getHealth() === 0){
 
-			this.actionsStr.push("You Lose!");
+			//this.actionsStr.push("You Lose!");
 
 		}
 

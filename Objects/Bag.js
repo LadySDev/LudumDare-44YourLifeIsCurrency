@@ -2,7 +2,7 @@ export class Bag{
 
 	constructor() {
 
-		this.objectList = new array(10);
+		this.objectList = new Array(10);
 		
 	}
 
