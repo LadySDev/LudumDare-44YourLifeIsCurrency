@@ -6,6 +6,7 @@ export class Object{
 		this.canUseIt = false;
 		this.canEquipIt = false;
 		this.canArmIt = false;
+		this.price = 0;
 
 	}
 
@@ -54,6 +55,18 @@ export class Object{
 	getCanArmIt(){
 
 		return this.canArmIt;
+
+	}
+
+	setPrice(price){
+
+		this.price = price;
+
+	}
+
+	getPrice(){
+
+		return this.price;
 
 	}
 

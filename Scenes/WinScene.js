@@ -26,6 +26,11 @@ export class WinScene extends Phaser.Scene{
 			this.anyLoot = true;
 
 		}
+		else{
+
+			this.canBackToMap = true;
+
+		}
 		
 	}
 

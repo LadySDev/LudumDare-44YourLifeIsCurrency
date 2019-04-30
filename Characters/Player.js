@@ -14,10 +14,6 @@ export class Player extends Character{
 		this.setDefense(0);
 		this.bag = new Bag();
 
-		this.bag.addObject(new LifePotion1());
-		this.bag.addObject(new Helmet1());
-		this.bag.addObject(new Sword1());
-
 	}
 
 	getBag(){

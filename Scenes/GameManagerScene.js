@@ -7,6 +7,7 @@ import { FightScene } from './FightScene.js';
 import { WinScene } from './WinScene.js';
 import { LoseScene } from './LoseScene.js';
 import { ProfileScene } from './ProfileScene.js';
+import { ShopScene } from './ShopScene.js';
 
 export class GameManagerScene extends Phaser.Scene{
 
@@ -57,7 +58,12 @@ export class GameManagerScene extends Phaser.Scene{
 
 	}
 
-	showShopScene(parent){}
+	showShopScene(parent){
+
+		parent.scene.start('ShopScene');						
+		parent.scene.sleep('MainScene');
+
+	}
 
 	showFightScene(parent){
 		
@@ -94,6 +100,7 @@ export class GameManagerScene extends Phaser.Scene{
 		this.scene.add('WinScene', WinScene, false);
 		this.scene.add('LoseScene', LoseScene, false);
 		this.scene.add('ProfileScene', ProfileScene, false);
+		this.scene.add('ShopScene', ShopScene, false);
 
 	}
 

@@ -8,6 +8,7 @@ export class Sword1 extends Weapon{
 
 		this.setName("Sword1");
 		this.setAttackBonus(5);
+		this.setPrice(10);
 		
 	}
 

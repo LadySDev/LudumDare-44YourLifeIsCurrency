@@ -62,6 +62,18 @@ export class MainScene extends Phaser.Scene{
 		this.btnShopTxt = this.add.text(320, 570, 'SHOP', { fontFamily: 'Arial', fontSize: 20, color: '#00ff00' });
 		this.btnShopTxt.setInteractive(new Phaser.Geom.Rectangle(0, 0, this.btnShopTxt.width, this.btnShopTxt.height), Phaser.Geom.Rectangle.Contains);
 
+		this.btnShopTxt.on('pointerover', function(pointer){
+			this.btnShopTxt.setAlpha(0.5);			
+		}, this);
+		
+		this.btnShopTxt.on('pointerout', function(pointer){
+			this.btnShopTxt.setAlpha(1.0);
+		}, this);
+
+		this.btnShopTxt.on('pointerdown', function(pointer){		
+			this.gameManagerScene.showShopScene(this);
+		}, this);
+
 	}
 
 	update(){
